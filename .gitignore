@@ -1,15 +1,29 @@
+# ========================
+# Android & IntelliJ Files
+# ========================
+
+# Project files
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+.gradle/
+build/
+**/build/
+
+# Local settings
 local.properties
+
+# IDE
+.idea/
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# NDK/CMake
+.externalNativeBuild/
+.cxx/
+
+# OS & Tooling
+.DS_Store
+captures/
