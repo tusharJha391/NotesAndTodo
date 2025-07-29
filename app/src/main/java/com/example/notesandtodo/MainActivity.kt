@@ -29,13 +29,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NotesAndTodoTheme {
-                val navHostController = rememberNavController()
-                CompositionLocalProvider(LocalNavHostController provides navHostController) {
-                    AppMainScreen(
-                        modifier = Modifier.fillMaxSize(),
-                        noteViewModel
-                    )
-                }
+                MainNavigation(noteViewModel)
             }
         }
     }
@@ -45,6 +39,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainAppPreview() {
     NotesAndTodoTheme {
-        AppMainScreen()
+        AppMainScreen(navController = rememberNavController())
     }
 }

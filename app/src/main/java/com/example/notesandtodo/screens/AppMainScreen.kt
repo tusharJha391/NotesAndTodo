@@ -6,13 +6,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -20,7 +18,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +25,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.notesandtodo.bottommenu.MainBottomBar
 import com.example.notesandtodo.ui.theme.NotesAndTodoTheme
 import com.example.notesandtodo.viewmodel.NoteViewModel
@@ -36,8 +35,7 @@ import timber.log.Timber
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun AppMainScreen(modifier: Modifier = Modifier, noteViewModel: NoteViewModel? = null) {
-    val navigationHost = LocalContentColor.current
+fun AppMainScreen(modifier: Modifier = Modifier, noteViewModel: NoteViewModel? = null, navController: NavController) {
     val context = LocalContext.current
     var currentBottomMenuSelection = remember { mutableIntStateOf(0) }
     LaunchedEffect(key1 = Unit) {
@@ -72,21 +70,6 @@ fun MainTopAppbar() {
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             titleContentColor = MaterialTheme.colorScheme.primary
         ),
-        title = {
-            Text(
-                text = "Note",
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-        },
-//        navigationIcon = {
-//            IconButton(onClick = {}) {
-//                Icon(
-//                    imageVector = Icons.Default.Menu,
-//                    contentDescription = ""
-//                )
-//            }
-//        },
         actions = {
             IconButton(onClick = {}) {
                 Icon(
@@ -94,7 +77,14 @@ fun MainTopAppbar() {
                     contentDescription = ""
                 )
             }
-        }
+        },
+        title = {
+            Text(
+                text = "Note",
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        },
     )
 }
 
@@ -117,6 +107,6 @@ fun FloatingAddButton() {
 @Composable
 fun AppMainPreview() {
     NotesAndTodoTheme {
-        AppMainScreen()
+        AppMainScreen(navController = rememberNavController())
     }
 }
