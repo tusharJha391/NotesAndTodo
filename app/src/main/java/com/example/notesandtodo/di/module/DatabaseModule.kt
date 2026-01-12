@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.notesandtodo.database.AppDataBase
 import com.example.notesandtodo.database.dao.NoteDAO
+import com.example.notesandtodo.database.dao.ToDoDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +19,11 @@ object DatabaseModule {
     @Provides
     fun providedNoteDao(dataBase: AppDataBase): NoteDAO {
         return dataBase.noteDao()
+    }
+
+    @Provides
+    fun providedToDoDao(dataBase: AppDataBase): ToDoDAO {
+        return dataBase.toDoDao()
     }
 
     @Provides

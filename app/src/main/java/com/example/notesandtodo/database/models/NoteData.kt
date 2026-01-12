@@ -4,11 +4,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "note")
-class NoteData {
+data class NoteData (
     @PrimaryKey
-    var id: Int = 1
-    var title: String = ""
-    var description: String = ""
-    var date: String = ""
-    var time: Long = 0L
-}
+    var id: Int = 1,
+    var title: String = "",
+    var description: String = "",
+    var date: String = "",
+    val color: String = "#FFFFFF",
+    val timestamp: Long = System.currentTimeMillis()
+)
